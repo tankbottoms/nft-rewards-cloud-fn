@@ -1,0 +1,41 @@
+# Readme
+
+## Quick Start
+
+### Install and build cloud-functions
+
+```sh
+  yarn && yarn build
+```
+
+### Starting emulators
+
+```sh
+  yarn emulators:start
+```
+
+### Export env variables
+
+Open another terminal and export the env variables.
+
+```sh
+export FIREBASE_STORAGE_EMULATOR_HOST="localhost:9199"
+```
+
+```sh
+export FIREBASE_AUTH_EMULATOR_HOST="localhost:9099"
+```
+
+```sh
+export FIREBASE_DATABASE_EMULATOR_HOST="localhost:9000"
+```
+
+```sh
+export GCLOUD_PROJECT="your-project-id"
+```
+
+**"your-project-id"** see in file _.firebaserc_.
+
+```sh
+  yarn pinning
+```
