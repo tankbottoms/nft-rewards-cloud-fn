@@ -28,7 +28,11 @@ export const pinningFunc = async (
       const nft_storage = new NFTStorage({
         token: process.env.NFT_STORAGE_API_KEY,
       })
-      const { image, name, externalLink, description } = request.body
+      const { image, name, externalLink, description, totalSupply } =
+        request.body as {
+          [key: string]: string
+        }
+      const totalSupplyCount = Number(totalSupply)
 
       const data: string = image.replace(/^data:image\/\w+;base64,/, '')
       const buf = Buffer.from(data, 'base64')
@@ -50,36 +54,42 @@ export const pinningFunc = async (
       )
       const imageStatus = await nft_storage.status(imageResult)
 
-      const metadata = {
-        name,
-        attributes: [],
-        symbol: 'JBX-100',
-        description,
-        minter: 'tankbottoms.eth',
-        decimals: 0,
-        creators: [],
-        publishers: [],
-        genre: [],
-        date: '',
-        tags: [],
-        mimeType: 'image/png',
-        artifactUri: `ipfs://${imageStatus.cid}/${filename}`,
-        displayUri: `ipfs://${imageStatus.cid}/${filename}`,
-        externalUri: externalLink,
-        uri: `ipfs://${imageStatus.cid}/${filename}`,
-        image: `ipfs://${imageStatus.cid}/${filename}`,
-        imageSize: 7251,
-        formats: [],
-        royalty_info: {},
-        rights: '© 2022 JuiceBox DAO, WAGMI Studios.xyz, All rights reserved.',
+      const metadataFolder: File[] = []
+
+      for (let index = 0; index < totalSupplyCount; index++) {
+        const metadata = {
+          name,
+          attributes: [],
+          symbol: 'JBX-100',
+          description,
+          minter: 'tankbottoms.eth',
+          decimals: 0,
+          creators: [],
+          publishers: [],
+          genre: [],
+          date: '',
+          tags: [],
+          mimeType: 'image/png',
+          artifactUri: `ipfs://${imageStatus.cid}/${filename}`,
+          displayUri: `ipfs://${imageStatus.cid}/${filename}`,
+          externalUri: externalLink,
+          uri: `ipfs://${imageStatus.cid}/${filename}`,
+          image: `ipfs://${imageStatus.cid}/${filename}`,
+          imageSize: 7251,
+          formats: [],
+          royalty_info: {},
+          rights:
+            '© 2022 JuiceBox DAO, WAGMI Studios.xyz, All rights reserved.',
+        }
+
+        const metadataBuffer = Buffer.from(JSON.stringify(metadata), 'utf8')
+        const metadataFile = new File([metadataBuffer], `${index}`)
+
+        metadataFolder.push(metadataFile)
       }
 
-      const metadataBuffer = Buffer.from(JSON.stringify(metadata), 'utf8')
-      const metadataFile = new File([metadataBuffer], '0')
-
-      const metadataResult = await time_track(
-        () => nft_storage.storeDirectory([metadataFile]),
-        '0'
+      const metadataResult = await time_track(() =>
+        nft_storage.storeDirectory(metadataFolder)
       )
       const metadataStatus = await nft_storage.status(metadataResult)
 

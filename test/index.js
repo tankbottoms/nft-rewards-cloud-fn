@@ -18,6 +18,10 @@ const piningFn = async (_, sub) => {
       },
       body: JSON.stringify({
         image: base64Image,
+        name: 'Test',
+        externalLink: '',
+        description: 'Test description',
+        totalSupply: '10',
       }),
     }
   )
