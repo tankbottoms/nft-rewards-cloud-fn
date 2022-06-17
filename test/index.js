@@ -1,17 +1,13 @@
 #!/usr/bin/env node
 const { fetch } = require('undici')
 const args = require('args')
-const firebase = require('firebase-admin')
 const { readFileSync } = require('fs')
-
-firebase.initializeApp({
-  databaseURL: 'http://localhost:9000/?ns=juicebox-svelte',
-})
 
 const piningFn = async (_, sub) => {
   const base64Image = readFileSync('test/0.png').toString('base64')
   const res = await fetch(
-    'http://localhost:5001/juicebox-svelte/us-central1/pining',
+    'http://localhost:5001/ipfs-scratch-space/us-central1/pining',
+    // 'https://us-central1-ipfs-scratch-space.cloudfunctions.net/pining',
     {
       method: 'POST',
       headers: {

@@ -3,6 +3,7 @@
   "scripts": {
     "build": "tsc",
     "pinning": "node ./test/index.js pining",
+    "deploy": "firebase deploy --only functions",
     "emulators:start": "firebase emulators:start --export-on-exit=./export-data --import=./export-data"
   },
   "engines": {
@@ -10,45 +11,20 @@
   },
   "main": "lib/index.js",
   "dependencies": {
-    "@ffmpeg-installer/ffmpeg": "^1.1.0",
-    "@ffprobe-installer/ffprobe": "^1.4.1",
     "args": "^5.0.3",
-    "canvas": "^2.9.1",
-    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
-    "csv-stringify": "^6.0.5",
-    "envalid": "^7.3.1",
-    "eth-sig-util": "^3.0.1",
-    "ethers": "^5.6.8",
     "firebase-admin": "^10.0.2",
     "firebase-functions": "^3.21.2",
-    "fluent-ffmpeg": "^2.1.2",
     "image-size": "^1.0.1",
-    "ipfs": "^0.62.3",
-    "ipfs-core": "^0.14.3",
-    "moment": "^2.29.3",
     "nft.storage": "^6.2.0",
-    "puppeteer": "^14.1.1",
-    "sharp": "^0.30.4",
     "undici": "^5.2.0",
-    "unzipper": "^0.10.11",
-    "uuid": "^8.3.2",
-    "web3": "^1.7.3"
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@types/args": "^5.0.0",
-    "@types/cookie-parser": "^1.4.3",
     "@types/cors": "^2.8.12",
-    "@types/csv-stringify": "^3.1.0",
     "@types/image-size": "^0.8.0",
-    "@types/moment": "^2.13.0",
-    "@types/oauth": "^0.9.1",
-    "@types/sharp": "^0.30.2",
-    "@types/unzipper": "^0.10.5",
     "@types/uuid": "^8.3.4",
-    "@types/web3": "^1.2.2",
-    "firebase-functions-test": "^0.2.0",
-    "ipfs-core-types": "^0.10.3",
     "typescript": "^4.5.4"
   },
   "private": true
