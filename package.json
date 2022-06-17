@@ -32,6 +32,7 @@
     "sharp": "^0.30.4",
     "undici": "^5.2.0",
     "unzipper": "^0.10.11",
+    "uuid": "^8.3.2",
     "web3": "^1.7.3"
   },
   "devDependencies": {
@@ -44,6 +45,7 @@
     "@types/oauth": "^0.9.1",
     "@types/sharp": "^0.30.2",
     "@types/unzipper": "^0.10.5",
+    "@types/uuid": "^8.3.4",
     "@types/web3": "^1.2.2",
     "firebase-functions-test": "^0.2.0",
     "ipfs-core-types": "^0.10.3",

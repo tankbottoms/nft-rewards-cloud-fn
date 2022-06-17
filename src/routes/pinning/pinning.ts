@@ -1,9 +1,7 @@
 import * as functions from 'firebase-functions'
 // import * as firebase from 'firebase-admin';
 import cors from 'cors'
-import os from 'os'
-import { writeFileSync, existsSync, readFileSync, rmSync } from 'fs'
-import { basename } from 'path'
+import { v4 as uuidv4 } from 'uuid'
 import { NFTStorage, File } from 'nft.storage'
 
 async function time_track<A>(
@@ -35,18 +33,12 @@ export const pinningFunc = async (
       const totalSupplyCount = Number(totalSupply)
 
       const data: string = image.replace(/^data:image\/\w+;base64,/, '')
-      const buf = Buffer.from(data, 'base64')
+      const fileBuffer = Buffer.from(data, 'base64')
 
-      const imagePath = `${os.tmpdir()}/image.png`
+      const imageSize = fileBuffer.length
+      const filename = `${uuidv4()}.png`
 
-      writeFileSync(imagePath, buf)
-
-      functions.logger.log('existsSync(imagePath)')
-      functions.logger.log(existsSync(imagePath))
-
-      const filename = basename(imagePath)
-      const file = new File([readFileSync(imagePath)], filename)
-      rmSync(imagePath)
+      const file = new File([fileBuffer], filename)
 
       const imageResult = await time_track(
         () => nft_storage.storeDirectory([file]),
@@ -75,7 +67,7 @@ export const pinningFunc = async (
           externalUri: externalLink,
           uri: `ipfs://${imageStatus.cid}/${filename}`,
           image: `ipfs://${imageStatus.cid}/${filename}`,
-          imageSize: 7251,
+          imageSize,
           formats: [],
           royalty_info: {},
           rights:
@@ -100,7 +92,7 @@ export const pinningFunc = async (
     } catch (e) {
       functions.logger.error(e)
       functions.logger.error(`error loading to ipfs: ${JSON.stringify(e)}`)
-      response.status(200).json({
+      response.status(500).json({
         success: false,
         cid: null,
       })
