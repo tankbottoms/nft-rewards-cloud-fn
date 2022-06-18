@@ -13,11 +13,11 @@
   "dependencies": {
     "args": "^5.0.3",
     "cors": "^2.8.5",
+    "cross-fetch": "^3.1.5",
     "firebase-admin": "^10.0.2",
     "firebase-functions": "^3.21.2",
     "image-size": "^1.0.1",
     "nft.storage": "^6.2.0",
-    "node-fetch": "^3.2.6",
     "ts-node": "^10.8.1",
     "undici": "^5.2.0",
     "uuid": "^8.3.2"

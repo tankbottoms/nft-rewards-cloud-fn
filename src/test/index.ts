@@ -1,4 +1,4 @@
-import fetch from "node-fetch";
+import fetch from "cross-fetch";
 import args from "args";
 import { readFileSync } from "fs";
 
