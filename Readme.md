@@ -39,3 +39,14 @@ export GCLOUD_PROJECT="your-project-id"
 ```sh
   yarn pinning
 ```
+
+#### Setting up Firebase Cloud Functions
+
+- make sure you are using node 16.x Firebase is picky
+- additional packages:
+  - firebase-tools
+
+```
+nvm use 16.15.1
+
+```

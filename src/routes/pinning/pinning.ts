@@ -12,7 +12,7 @@ async function time_track<A>(
   const res = await asyncFn()
   const time = (new Date().getTime() - starttime) / 1000
   const id_str = id ? `<${id}>` : ''
-  functions.logger.log(`ipfs upload directory Promise ${id_str}`)
+  functions.logger.log(`ipfs upload directory promise ${id_str}`)
   functions.logger.log(`upload ${time} seconds`)
   return res
 }
