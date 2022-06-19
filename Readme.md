@@ -8,6 +8,13 @@
   yarn && yarn build
 ```
 
+### Start emulator, run tests
+
+```sh
+yarn dev
+ts-node ./src/test/index.ts
+```
+
 ### Starting emulators
 
 ```sh
@@ -42,9 +49,9 @@ export GCLOUD_PROJECT="your-project-id"
 
 #### Setting up Firebase Cloud Functions
 
-- make sure you are using node 16.x Firebase is picky
-- additional packages:
-  - firebase-tools
+-   make sure you are using node 16.x Firebase is picky
+-   additional packages:
+    -   firebase-tools
 
 ```
 nvm use 16.15.1
@@ -54,13 +61,15 @@ nvm use 16.15.1
 ### Develop
 
 Start firebase emulator
+
 ```
 yarn dev
 ```
 
 POST: http://localhost:5001/ipfs-scratch-space/us-central1/pinning
 
-body: 
+body:
+
 ```
 {
    "tokens": [{"key": "value"}]

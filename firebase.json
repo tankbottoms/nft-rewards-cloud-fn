@@ -33,7 +33,7 @@
       "port": 9099
     },
     "functions": {
-      "port": 5001
+      "port": 5005
     },
     "database": {
       "port": 9000
@@ -48,7 +48,7 @@
       "port": 8081
     },
     "hosting": {
-      "port": 5002
+      "port": 5000
     }
   }
 }
