@@ -16,6 +16,7 @@
     "cross-fetch": "^3.1.5",
     "firebase-admin": "^10.0.2",
     "firebase-functions": "^3.21.2",
+    "global": "^4.4.0",
     "image-size": "^1.0.1",
     "nft.storage": "^6.2.0",
     "ts-node": "^10.8.1",

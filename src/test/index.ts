@@ -10,7 +10,7 @@ const pinningUri = is_emulated
 const pinningFn = async (_, sub) => {
     console.log(`pinningFn, ${pinningUri}`);
 
-    const base64Image = readFileSync("test/nft-rewards.png").toString("base64");
+    const base64Image = readFileSync("src/test/nft-rewards.png").toString("base64");
     console.log(`base64Image: ${base64Image.length}`);
 
     const res = await fetch(pinningUri, {
@@ -26,6 +26,7 @@ const pinningFn = async (_, sub) => {
             totalSupply: "7000",
         }),
     });
+    
     const json = await res.json();
     console.log(json);
 };
