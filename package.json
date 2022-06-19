@@ -4,7 +4,11 @@
     "build": "tsc",
     "pinning": "node ./test/index.js pining",
     "deploy": "firebase deploy --only functions",
-    "emulators:start": "firebase emulators:start --export-on-exit=./export-data --import=./export-data"
+    "emulators:start": "firebase emulators:start --export-on-exit=./export-data --import=./export-data",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "dev": "nodemon --watch src/ --exec \"yarn serve\""
   },
   "engines": {
     "node": "16"
@@ -14,14 +18,18 @@
     "args": "^5.0.3",
     "cors": "^2.8.5",
     "cross-fetch": "^3.1.5",
+    "csv-parse": "^5.2.0",
+    "dotenv": "^16.0.1",
     "firebase-admin": "^10.0.2",
     "firebase-functions": "^3.21.2",
     "global": "^4.4.0",
     "image-size": "^1.0.1",
-    "nft.storage": "^6.2.0",
+    "nft.storage": "^6.3.0",
+    "nodemon": "^2.0.16",
     "ts-node": "^10.8.1",
     "undici": "^5.2.0",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "zlib": "^1.0.5"
   },
   "devDependencies": {
     "@types/args": "^5.0.0",
