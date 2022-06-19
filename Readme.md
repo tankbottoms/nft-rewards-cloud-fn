@@ -50,3 +50,19 @@ export GCLOUD_PROJECT="your-project-id"
 nvm use 16.15.1
 
 ```
+
+### Develop
+
+Start firebase emulator
+```
+yarn dev
+```
+
+POST: http://localhost:5001/ipfs-scratch-space/us-central1/pinning
+
+body: 
+```
+{
+   "tokens": [{"key": "value"}]
+}
+```
