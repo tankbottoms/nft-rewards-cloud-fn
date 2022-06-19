@@ -1,7 +1,25 @@
-{   "tiers": "1.26",  
-    "image_url": "https://gateway.pinata.cloud/ipfs/QmdmPHWQBzV24GvbwCszm2AnWetBENeBP2UStuETsyAp1C",  
-    "name": "This is happening",  
-    "external_url": "https://juicebox.money",  
+{           
+    "edition": 0,
+    "isBooleanAmount": true,
+    "name": "This is happening",      
     "description": "Making it rain.",  
-    "supply": "5"
+    "shouldPreferSymbol": false,
+    "minter": "JuiceboxDAO",
+    "decimals": 0,    
+    "publishers": [
+        "JuiceboxDAO"
+    ],
+    "date": "2022-03-04T12:09:18.159Z",
+    "uri": "https://juicebox.money",
+    "image": "https://gateway.pinata.cloud/ipfs/QmdmPHWQBzV24GvbwCszm2AnWetBENeBP2UStuETsyAp1C",
+    "attributes": [
+        {
+            "trait_type": "tiers",
+            "value": "1.26"                        
+        },{
+            "trait_type": "supply",
+            "value": "5"
+        }
+    ],
+    "rights": ""    
 }
