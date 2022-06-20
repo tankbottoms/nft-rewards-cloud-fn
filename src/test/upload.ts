@@ -1,7 +1,6 @@
 import fs from "fs";
 import path from "path";
 import { config } from "dotenv";
-// import { parseCsv } from "./utils/csv";
 import fetch from "cross-fetch";
 import { parseCsv } from "../utils/csv";
 

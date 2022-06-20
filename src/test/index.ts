@@ -10,7 +10,7 @@ const pinningUri = is_emulated
 const pinningFn = async (_, sub) => {
     console.log(`pinningFn, ${pinningUri}`);
 
-    const base64Image = readFileSync("src/test/nft-rewards.png").toString(
+    const base64Image = readFileSync("src/assets/nft-rewards.png").toString(
         "base64"
     );
     console.log(`base64Image: ${base64Image.length}`);
