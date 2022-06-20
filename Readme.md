@@ -49,29 +49,66 @@ export GCLOUD_PROJECT="your-project-id"
 
 #### Setting up Firebase Cloud Functions
 
--   make sure you are using node 16.x Firebase is picky
--   additional packages:
-    -   firebase-tools
+- make sure you are using node 16.x Firebase is picky
+- additional packages:
+  - firebase-tools
 
 ```
 nvm use 16.15.1
 
 ```
 
+### Deployment
+
+- https://us-central1-ipfs-scratch-space.cloudfunctions.net/pinning
+
 ### Develop
+- create .env 
+- start emulator
+  run `yarn dev`
+- http://localhost:5005/ipfs-scratch-space/us-central1/pinning
+- test
+  run `ts-node src/test/upload.ts`
 
-Start firebase emulator
+### EXAMPLE 1:
 
+```ts
+import { readFileSync } from 'fs';
+
+const csvContent = readFileSync(PATH_TO_CSV, 'utf8');
+
+const response = await fetch(
+  "https://us-central1-ipfs-scratch-space.cloudfunctions.net/pinning",
+  {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      csvContent,
+    }),
+  }
+);
+
+const { cid } = await response.json();
 ```
-yarn dev
-```
 
-POST: http://localhost:5001/ipfs-scratch-space/us-central1/pinning
+### EXAMPLE 2:
 
-body:
+```ts
+import { readFileSync } from 'fs';
+import { parseCsv } from 'src/utils/csv';
 
-```
-{
-   "tokens": [{"key": "value"}]
-}
+const csvContent = readFileSync(PATH_TO_CSV, 'utf8');
+
+const response = await fetch(
+  "https://us-central1-ipfs-scratch-space.cloudfunctions.net/pinning",
+  {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      entries: parseCsv(csvContent),
+    }),
+  }
+);
+
+const { cid } = await response.json();
 ```
