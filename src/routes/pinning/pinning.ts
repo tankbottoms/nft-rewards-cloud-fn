@@ -1,5 +1,4 @@
 import * as functions from "firebase-functions";
-// import * as firebase from 'firebase-admin';
 import cors from "cors";
 // import { v4 as uuidv4 } from "uuid";
 import { NFTStorage, File } from "nft.storage";
@@ -7,18 +6,20 @@ import { deflateSync } from "zlib";
 import { uploadJsonEntries } from "../../utils/ipfs";
 import { parseCsv } from "../../utils/csv";
 
-// async function time_track<A>(
-//   asyncFn: () => Promise<A>,
-//   id: string | undefined = undefined
-// ) {
-//   const starttime = new Date().getTime();
-//   const res = await asyncFn();
-//   const time = (new Date().getTime() - starttime) / 1000;
-//   const id_str = id ? `<${id}>` : "";
-//   functions.logger.log(`ipfs upload directory promise ${id_str}`);
-//   functions.logger.log(`upload ${time} seconds`);
-//   return res;
-// }
+/*
+async function time_track<A>(
+  asyncFn: () => Promise<A>,
+  id: string | undefined = undefined
+) {
+  const starttime = new Date().getTime();
+  const res = await asyncFn();
+  const time = (new Date().getTime() - starttime) / 1000;
+  const id_str = id ? `<${id}>` : "";
+  functions.logger.log(`ipfs upload directory promise ${id_str}`);
+  functions.logger.log(`upload ${time} seconds`);
+  return res;
+}
+*/
 
 function handleEntry(entry: any) {
   const obj: Record<string, any> = {};
