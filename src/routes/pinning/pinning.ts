@@ -5,6 +5,7 @@ import cors from "cors";
 import { NFTStorage, File } from "nft.storage";
 import { deflateSync } from "zlib";
 import { uploadJsonEntries } from "../../utils/ipfs";
+import { parseCsv } from "../../utils/csv";
 
 // async function time_track<A>(
 //   asyncFn: () => Promise<A>,
@@ -19,6 +20,35 @@ import { uploadJsonEntries } from "../../utils/ipfs";
 //   return res;
 // }
 
+function handleEntry(entry: any) {
+  const obj: Record<string, any> = {};
+  for (const key in entry) {
+    if (key.startsWith("attributes_")) {
+      const attribute_name = key.replace("attributes_", "");
+      const attribute_value = entry[key];
+      const attributes = obj.attributes || [];
+      attributes.push(
+        handleEntry({
+          trait_type: attribute_name,
+          value: attribute_value,
+        })
+      );
+      obj.attributes = attributes;
+    } else if (entry[key].toLowerCase() === "true") {
+      obj[key] = true;
+    } else if (entry[key].toLowerCase() === "false") {
+      obj[key] = false;
+    } else {
+      let res = entry[key];
+      try {
+        res = JSON.parse(entry[key]);
+      } catch (e) {}
+      obj[key] = res;
+    }
+  }
+  return obj;
+}
+
 export const pinningFunc = async (
   request: functions.Request,
   response: functions.Response
@@ -29,17 +59,40 @@ export const pinningFunc = async (
         token: process.env.NFT_STORAGE_API_KEY,
       });
 
-      const { tokens } = request.body as { tokens: Record<string, any>[] };
+      let { entries, csvContent } = request.body as {
+        entries?: Record<string, any>[];
+        csvContent?: string;
+      };
+
+      if (typeof csvContent === "string") {
+        entries = parseCsv(csvContent)
+          .map(handleEntry)
+          .sort(
+            (a, b) =>
+              Number(a.attributes[0].value) - Number(b.attributes[0].value)
+          );
+      } else {
+        entries = entries.map(handleEntry);
+      }
+      const tokens: any[] = [];
 
       const compressedFiles: File[] = [];
-      for (let i = 0; i < tokens.length; i++) {
-        const token = tokens[i];
-        const jsonString = JSON.stringify(token, null, "  ");
-        const compressedContent = deflateSync(Buffer.from(jsonString), {
-          level: 9,
-        });
-        const file = new File([compressedContent], `compressed/${i + 1}`);
-        compressedFiles.push(file);
+      let tokenCount = 0;
+      for (let i = 0; i < entries.length; i++) {
+        for (let j = 0; j < entries[i].attributes[1].value; j++) {
+          tokenCount++;
+          const token = entries[i];
+          tokens.push(token);
+          const jsonString = JSON.stringify(token, null, "  ");
+          const compressedContent = deflateSync(Buffer.from(jsonString), {
+            level: 9,
+          });
+          const file = new File(
+            [compressedContent],
+            `compressed/${tokenCount}`
+          );
+          compressedFiles.push(file);
+        }
       }
 
       const cid = await uploadJsonEntries(tokens, {

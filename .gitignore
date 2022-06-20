@@ -13,3 +13,4 @@ node_modules/
 export-data/
 
 .env
+.DS_Store
