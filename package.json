@@ -2,7 +2,7 @@
   "name": "functions",
   "scripts": {
     "build": "tsc",
-    "pinning": "node ./test/index.js pining",
+    "pinning": "ts-node src/test/upload.ts",
     "deploy": "firebase deploy --only functions",
     "emulators:start": "firebase emulators:start --export-on-exit=./export-data --import=./export-data",
     "serve": "npm run build && firebase emulators:start --only functions",
@@ -23,20 +23,16 @@
     "firebase-admin": "^10.0.2",
     "firebase-functions": "^3.21.2",
     "global": "^4.4.0",
-    "image-size": "^1.0.1",
     "nft.storage": "^6.3.0",
     "nodemon": "^2.0.16",
     "ts-node": "^10.8.1",
-    "undici": "^5.2.0",
-    "uuid": "^8.3.2",
     "zlib": "^1.0.5"
   },
   "devDependencies": {
     "@types/args": "^5.0.0",
     "@types/cors": "^2.8.12",
-    "@types/image-size": "^0.8.0",
     "@types/uuid": "^8.3.4",
-    "typescript": "^4.5.4"
+    "typescript": "^4.7.4"
   },
   "private": true
 }

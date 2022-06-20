@@ -11,37 +11,8 @@
 ### Start emulator, run tests
 
 ```sh
-yarn dev
-ts-node ./src/test/index.ts
+  yarn dev
 ```
-
-### Starting emulators
-
-```sh
-  yarn emulators:start
-```
-
-### Export env variables
-
-Open another terminal and export the env variables.
-
-```sh
-export FIREBASE_STORAGE_EMULATOR_HOST="localhost:9199"
-```
-
-```sh
-export FIREBASE_AUTH_EMULATOR_HOST="localhost:9099"
-```
-
-```sh
-export FIREBASE_DATABASE_EMULATOR_HOST="localhost:9000"
-```
-
-```sh
-export GCLOUD_PROJECT="your-project-id"
-```
-
-**"your-project-id"** see in file _.firebaserc_.
 
 ```sh
   yarn pinning
@@ -63,7 +34,8 @@ nvm use 16.15.1
 - https://us-central1-ipfs-scratch-space.cloudfunctions.net/pinning
 
 ### Develop
-- create .env 
+
+- create .env
 - start emulator
   run `yarn dev`
 - http://localhost:5005/ipfs-scratch-space/us-central1/pinning
@@ -73,9 +45,9 @@ nvm use 16.15.1
 ### EXAMPLE 1:
 
 ```ts
-import { readFileSync } from 'fs';
+import { readFileSync } from "fs";
 
-const csvContent = readFileSync(PATH_TO_CSV, 'utf8');
+const csvContent = readFileSync(PATH_TO_CSV, "utf8");
 
 const response = await fetch(
   "https://us-central1-ipfs-scratch-space.cloudfunctions.net/pinning",
@@ -94,10 +66,10 @@ const { cid } = await response.json();
 ### EXAMPLE 2:
 
 ```ts
-import { readFileSync } from 'fs';
-import { parseCsv } from 'src/utils/csv';
+import { readFileSync } from "fs";
+import { parseCsv } from "src/utils/csv";
 
-const csvContent = readFileSync(PATH_TO_CSV, 'utf8');
+const csvContent = readFileSync(PATH_TO_CSV, "utf8");
 
 const response = await fetch(
   "https://us-central1-ipfs-scratch-space.cloudfunctions.net/pinning",
