@@ -73,42 +73,52 @@ nvm use 16.15.1
 ### EXAMPLE 1:
 
 ```ts
-import { readFileSync } from 'fs';
+import { readFileSync } from "fs";
+import fetch from 'cross-fetch';
 
-const csvContent = readFileSync(PATH_TO_CSV, 'utf8');
+const csvContent = readFileSync("src/assets/nft-rewards-tiers.csv", "utf8");
 
-const response = await fetch(
-  "https://us-central1-ipfs-scratch-space.cloudfunctions.net/pinning",
-  {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      csvContent,
-    }),
-  }
-);
+(async function () {
+  const response = await fetch(
+    "https://us-central1-ipfs-scratch-space.cloudfunctions.net/pinning",
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        csvContent,
+      }),
+    }
+  );
 
-const { cid } = await response.json();
+  const { cid } = await response.json();
+
+  console.log({ cid });
+})();
 ```
 
 ### EXAMPLE 2:
 
 ```ts
-import { readFileSync } from 'fs';
-import { parseCsv } from 'src/utils/csv';
+import { readFileSync } from "fs";
+import fetch from 'cross-fetch';
+import { parseCsv } from '../utils/csv';
 
-const csvContent = readFileSync(PATH_TO_CSV, 'utf8');
+const csvContent = readFileSync("src/assets/nft-rewards-tiers.csv", "utf8");
 
-const response = await fetch(
-  "https://us-central1-ipfs-scratch-space.cloudfunctions.net/pinning",
-  {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      entries: parseCsv(csvContent),
-    }),
-  }
-);
+(async function () {
+  const response = await fetch(
+    "https://us-central1-ipfs-scratch-space.cloudfunctions.net/pinning",
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        entries: parseCsv(csvContent),
+      }),
+    }
+  );
 
-const { cid } = await response.json();
+  const { cid } = await response.json();
+
+  console.log({ cid });
+})();
 ```
