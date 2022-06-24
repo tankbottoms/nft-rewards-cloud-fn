@@ -1,25 +1,137 @@
-{           
-    "edition": 0,
-    "isBooleanAmount": true,
-    "name": "This is happening",      
-    "description": "Making it rain.",  
-    "shouldPreferSymbol": false,
-    "minter": "JuiceboxDAO",
-    "decimals": 0,    
-    "publishers": [
-        "JuiceboxDAO"
-    ],
-    "date": "2022-03-04T12:09:18.159Z",
-    "uri": "https://juicebox.money",
-    "image": "https://gateway.pinata.cloud/ipfs/QmdmPHWQBzV24GvbwCszm2AnWetBENeBP2UStuETsyAp1C",
-    "attributes": [
-        {
-            "trait_type": "tiers",
-            "value": "1.26"                        
-        },{
-            "trait_type": "supply",
-            "value": "5"
-        }
-    ],
-    "rights": ""
-}
+[
+    {
+        "edition": 1,
+        "isBooleanAmount": true,
+        "shouldPreferSymbol": false,
+        "minter": "JuiceBoxDAO",
+        "publishers": "JuiceBoxDAO",
+        "date": "2022-03-04T12:09:18.159Z",
+        "attributes_tiers": 0.1,
+        "attributes_supply": 50,
+        "image": "http://cloudflare-ipfs.com/ipfs/QmUfmCGmpA6nAWt2TjzTachaKB89E2u5ZfRZjBRvKyLko5/01.png",
+        "name": "Banana",
+        "uri": "https://juicebox.money",
+        "description": "Everyone's invited.",
+        "rights": ""
+    },
+    {
+        "edition": 1,
+        "isBooleanAmount": true,
+        "shouldPreferSymbol": false,
+        "minter": "JuiceBoxDAO",
+        "publishers": "JuiceBoxDAO",
+        "date": "2022-03-04T12:09:18.159Z",
+        "attributes_tiers": 0.25,
+        "attributes_supply": 40,
+        "image": "http://cloudflare-ipfs.com/ipfs/QmUfmCGmpA6nAWt2TjzTachaKB89E2u5ZfRZjBRvKyLko5/36.png",
+        "name": "Batbanny",
+        "uri": "https://juicebox.money",
+        "description": "Almost aping in.",
+        "rights": ""
+    },
+    {
+        "edition": 1,
+        "isBooleanAmount": true,
+        "shouldPreferSymbol": false,
+        "minter": "JuiceBoxDAO",
+        "publishers": "JuiceBoxDAO",
+        "date": "2022-03-04T12:09:18.159Z",
+        "attributes_tiers": 0.42,
+        "attributes_supply": 30,
+        "image": "http://cloudflare-ipfs.com/ipfs/QmUfmCGmpA6nAWt2TjzTachaKB89E2u5ZfRZjBRvKyLko5/45.png",
+        "name": "Samurai ",
+        "uri": "https://juicebox.money",
+        "description": "Cheech and Chong all the way.",
+        "rights": ""
+    },
+    {
+        "edition": 1,
+        "isBooleanAmount": true,
+        "shouldPreferSymbol": false,
+        "minter": "JuiceBoxDAO",
+        "publishers": "JuiceBoxDAO",
+        "date": "2022-03-04T12:09:18.159Z",
+        "attributes_tiers": 0.5,
+        "attributes_supply": 275,
+        "image": "http://cloudflare-ipfs.com/ipfs/QmUfmCGmpA6nAWt2TjzTachaKB89E2u5ZfRZjBRvKyLko5/22.png",
+        "name": "Wade",
+        "uri": "https://juicebox.money",
+        "description": "We are half-way there.",
+        "rights": ""
+    },
+    {
+        "edition": 1,
+        "isBooleanAmount": true,
+        "shouldPreferSymbol": false,
+        "minter": "JuiceBoxDAO",
+        "publishers": "JuiceBoxDAO",
+        "date": "2022-03-04T12:09:18.159Z",
+        "attributes_tiers": 0.69,
+        "attributes_supply": 25,
+        "image": "http://cloudflare-ipfs.com/ipfs/QmUfmCGmpA6nAWt2TjzTachaKB89E2u5ZfRZjBRvKyLko5/29.png",
+        "name": "Jesus",
+        "uri": "https://juicebox.money",
+        "description": "Uh, hehehehe.",
+        "rights": ""
+    },
+    {
+        "edition": 1,
+        "isBooleanAmount": true,
+        "shouldPreferSymbol": false,
+        "minter": "JuiceBoxDAO",
+        "publishers": "JuiceBoxDAO",
+        "date": "2022-03-04T12:09:18.159Z",
+        "attributes_tiers": 0.75,
+        "attributes_supply": 20,
+        "image": "http://cloudflare-ipfs.com/ipfs/QmUfmCGmpA6nAWt2TjzTachaKB89E2u5ZfRZjBRvKyLko5/39.png",
+        "name": "Jango Bango",
+        "uri": "https://juicebox.money",
+        "description": "Let's do this.",
+        "rights": ""
+    },
+    {
+        "edition": 1,
+        "isBooleanAmount": true,
+        "shouldPreferSymbol": false,
+        "minter": "JuiceBoxDAO",
+        "publishers": "JuiceBoxDAO",
+        "date": "2022-03-04T12:09:18.159Z",
+        "attributes_tiers": 1,
+        "attributes_supply": 25,
+        "image": "http://cloudflare-ipfs.com/ipfs/QmUfmCGmpA6nAWt2TjzTachaKB89E2u5ZfRZjBRvKyLko5/51.png",
+        "name": "Princess",
+        "uri": "https://juicebox.money",
+        "description": "There can be only one.",
+        "rights": ""
+    },
+    {
+        "edition": 1,
+        "isBooleanAmount": true,
+        "shouldPreferSymbol": false,
+        "minter": "JuiceBoxDAO",
+        "publishers": "JuiceBoxDAO",
+        "date": "2022-03-04T12:09:18.159Z",
+        "attributes_tiers": 1.25,
+        "attributes_supply": 10,
+        "image": "http://cloudflare-ipfs.com/ipfs/QmUfmCGmpA6nAWt2TjzTachaKB89E2u5ZfRZjBRvKyLko5/60.png",
+        "name": "Zen",
+        "uri": "https://juicebox.money",
+        "description": "I'm special.",
+        "rights": ""
+    },
+    {
+        "edition": 1,
+        "isBooleanAmount": true,
+        "shouldPreferSymbol": false,
+        "minter": "JuiceBoxDAO",
+        "publishers": "JuiceBoxDAO",
+        "date": "2022-03-04T12:09:18.159Z",
+        "attributes_tiers": 1.26,
+        "attributes_supply": 5,
+        "image": "https://gateway.pinata.cloud/ipfs/QmdmPHWQBzV24GvbwCszm2AnWetBENeBP2UStuETsyAp1C",
+        "name": "This is happening",
+        "uri": "https://juicebox.money",
+        "description": "Making it rain.",
+        "rights": ""
+    }
+]

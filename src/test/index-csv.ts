@@ -22,3 +22,7 @@ const csvContent = readFileSync("src/assets/nft-rewards-tiers.csv", "utf8");
   console.log(`cloud function execution time took: ${time.time()} ms`);
   console.log(`https://cloudflare-ipfs.com/ipfs/${cid}/`);
 })();
+
+(async function () {
+  console.log(csvContent);
+})();
