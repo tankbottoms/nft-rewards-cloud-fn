@@ -35,9 +35,15 @@ function handleEntry(entry: any) {
         })
       );
       obj.attributes = attributes;
-    } else if (entry[key].toLowerCase() === "true") {
+    } else if (
+      typeof entry[key] === "string" &&
+      entry[key]?.toLowerCase() === "true"
+    ) {
       obj[key] = true;
-    } else if (entry[key].toLowerCase() === "false") {
+    } else if (
+      typeof entry[key] === "string" &&
+      entry[key]?.toLowerCase() === "false"
+    ) {
       obj[key] = false;
     } else {
       let res = entry[key];
@@ -60,20 +66,37 @@ export const pinningFunc = async (
         token: process.env.NFT_STORAGE_API_KEY,
       });
 
-      let { entries, csvContent } = request.body as {
-        entries?: Record<string, any>[];
-        csvContent?: string;
-      };
+      const { format, ...body } = request.body as
+        | {
+            json: Record<string, any>[];
+            format: "csv" | "json";
+          }
+        | {
+            csv: string;
+            format: "csv" | "json";
+          };
 
-      if (typeof csvContent === "string") {
-        entries = parseCsv(csvContent)
-          .map(handleEntry)
+      let entries: Record<string, any>[] = [];
+
+      if (format === "csv" && body["csv"]) {
+        entries = parseCsv(body["csv"])
           .sort(
-            (a, b) =>
-              Number(a.attributes[0].value) - Number(b.attributes[0].value)
-          );
+            (a, b) => Number(a.attributes_tiers) - Number(b.attributes_tiers)
+          )
+          .map(handleEntry);
+      } else if (format === "json" && body["json"] instanceof Array) {
+        entries = body["json"]
+          .sort(
+            (a, b) => Number(a.attributes_tiers) - Number(b.attributes_tiers)
+          )
+          .map(handleEntry);
       } else {
-        entries = entries.map(handleEntry);
+        response.json({
+          cid: null,
+          success: false,
+          error: "invalid request",
+        });
+        return;
       }
       const tokens: any[] = [];
 
