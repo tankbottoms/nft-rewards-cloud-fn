@@ -57,7 +57,8 @@ const csvContent = readFileSync("src/assets/nft-rewards-tiers.csv", "utf8");
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        csvContent,
+        csv: csvContent,
+        format: 'csv'
       }),
     }
   );
@@ -84,7 +85,8 @@ const csvContent = readFileSync("src/assets/nft-rewards-tiers.csv", "utf8");
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        entries: parseCsv(csvContent),
+        json: parseCsv(csvContent),
+        format: 'json'
       }),
     }
   );
