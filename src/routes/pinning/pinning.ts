@@ -79,25 +79,46 @@ export const pinningFunc = async (
       let entries: Record<string, any>[] = [];
 
       if (format === "csv" && body["csv"]) {
-        entries = parseCsv(body["csv"])
-          .sort(
-            (a, b) => Number(a.attributes_tiers) - Number(b.attributes_tiers)
-          )
-          .map(handleEntry);
+        entries = parseCsv(body["csv"]);
       } else if (format === "json" && body["json"] instanceof Array) {
-        entries = body["json"]
-          .sort(
-            (a, b) => Number(a.attributes_tiers) - Number(b.attributes_tiers)
-          )
-          .map(handleEntry);
+        entries = body["json"];
       } else {
-        response.json({
+        response.status(500).json({
           cid: null,
           success: false,
           error: "invalid request",
         });
         return;
       }
+
+      if (
+        entries.find(
+          (entry) =>
+            typeof entry.attributes_tiers === "undefined" ||
+            typeof entry.attributes_supply === "undefined"
+        )
+      ) {
+        response.status(500).json({
+          cid: null,
+          success: false,
+          error: "missing column `attributes_tiers` or `attributes_supply`",
+        });
+        return;
+      }
+
+      entries = entries
+        .sort((a, b) => Number(a.attributes_tiers) - Number(b.attributes_tiers))
+        .map(handleEntry);
+
+      if ((entries?.length || 0) === 0) {
+        response.status(500).json({
+          cid: null,
+          success: false,
+          error: "something went wrong",
+        });
+        return;
+      }
+
       const tokens: any[] = [];
 
       const compressedFiles: File[] = [];
